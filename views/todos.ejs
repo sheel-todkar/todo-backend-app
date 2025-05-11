@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Todos</title>
+</head>
+<body>
+  <%- include("./partials/header", { title: "Todos", session: session }) %>
+
+  <h2>Your Todos</h2>
+
+  <form action="/todos/create" method="POST">
+    <input type="text" name="text" placeholder="Add a new todo" required />
+    <button type="submit">Add</button>
+  </form>
+
+  <ul>
+    <% todos.forEach(todo => { %>
+      <li>
+        <form action="/todos/update/<%= todo._id %>" method="POST" style="display:inline;">
+          <input type="text" name="text" value="<%= todo.text %>" />
+          <button type="submit">Update</button>
+        </form>
+        <form action="/todos/delete/<%= todo._id %>" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+
+  <%- include("./partials/footer") %>
+
+</body>
+</html>
