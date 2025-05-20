@@ -35,8 +35,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Routes
-app.use(authRoutes);
-app.use(todoRoutes);
+app.use('/auth', authRoutes);
+app.use('/todos', todoRoutes);
 
 // Start Server
 app.listen(PORT, () => {
